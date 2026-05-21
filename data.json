@@ -1,0 +1,13 @@
+{
+  "generated_at": null,
+  "source": "https://www.war.gov/UFO/",
+  "has_new_today": false,
+  "new_count": 0,
+  "new_ids": [],
+  "previous_run_at": null,
+  "categories": ["UAP", "UFO", "UMA", "Drone", "Balloon"],
+  "slideshow": [],
+  "entries": [],
+  "totals": { "entries": 0, "translations_cached": 0 },
+  "_note": "尚未執行第一次爬蟲。請到 GitHub 的 Actions 頁面手動觸發 'Daily UFO update' workflow。"
+}

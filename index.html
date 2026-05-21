@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PURSUE 解密檔案追蹤 · UAP / UFO 中英對照</title>
+<meta name="description" content="自動匯整美國國防部 PURSUE 計畫公開的 UAP / UFO 解密檔案,提供英文原文與繁體中文對照、分類篩選、每日更新提醒。" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <h1>PURSUE 解密檔案追蹤</h1>
+    <p class="tag">每日自動匯整 <a href="https://www.war.gov/UFO/" target="_blank" rel="noopener">www.war.gov/UFO/</a> 公開資料 · 英文原文 + 繁體中文翻譯</p>
+  </div>
+</header>
+
+<div id="update-banner" class="update-banner hidden" role="status" aria-live="polite">
+  <div class="wrap">
+    <strong>有新內容!</strong>
+    <span id="update-banner-text"></span>
+    <button type="button" id="dismiss-banner" aria-label="關閉通知">×</button>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <section class="controls">
+    <input type="search" id="search" placeholder="搜尋(英文或中文皆可)..." />
+    <div class="filter-row">
+      <span class="filter-label">分類:</span>
+      <div id="tag-filters" class="tag-filters"></div>
+    </div>
+    <div class="meta-row">
+      <span id="entry-count">載入中…</span>
+      <span id="last-updated"></span>
+      <button id="reload-btn" type="button">重新整理</button>
+    </div>
+  </section>
+
+  <section id="entries" class="entries"></section>
+
+  <p class="footnote">
+    資料來源:U.S. Department of War — Presidential Unsealing and Reporting System for UAP Encounters (PURSUE)。
+    本網站為非官方彙整,僅做翻譯與閱讀協助,內容版權歸原發布單位。
+  </p>
+</main>
+
+<template id="entry-card-tmpl">
+  <article class="entry-card">
+    <div class="card-head">
+      <div class="card-titles">
+        <h2 class="title-en"></h2>
+        <h2 class="title-zh"></h2>
+      </div>
+      <div class="card-tags"></div>
+    </div>
+    <div class="card-meta"></div>
+    <div class="card-body">
+      <div class="col-en">
+        <p class="desc-en"></p>
+      </div>
+      <div class="col-zh">
+        <p class="desc-zh"></p>
+      </div>
+    </div>
+    <div class="card-foot">
+      <a class="detail-link" href="#">查看詳細內容 / 圖片 →</a>
+    </div>
+  </article>
+</template>
+
+<script src="app.js"></script>
+</body>
+</html>

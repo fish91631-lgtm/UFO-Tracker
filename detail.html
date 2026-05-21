@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>檔案詳情 · PURSUE 解密檔案追蹤</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <p><a href="index.html">← 回到列表</a></p>
+    <h1 id="detail-title">載入中…</h1>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="detail-root" class="detail-root">
+    <p>讀取中,請稍候…</p>
+  </section>
+</main>
+
+<script src="app.js"></script>
+<script>
+  // Reuse the data loader from app.js, then render the single entry.
+  window.addEventListener("DOMContentLoaded", () => {
+    const id = new URLSearchParams(location.search).get("id") || "";
+    UFOTracker.loadData()
+      .then(data => UFOTracker.renderDetail(data, id))
+      .catch(err => {
+        document.getElementById("detail-root").innerHTML =
+          `<p class="error">讀取失敗: ${err.message}</p>`;
+      });
+  });
+</script>
+</body>
+</html>
