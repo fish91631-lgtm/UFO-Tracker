@@ -85,19 +85,41 @@ def save_json(path: Path, data) -> None:
     )
 
 
-def http_get(url: str, *, timeout: int = 30) -> Optional[requests.Response]:
-    for attempt in range(2):
-        try:
-            r = requests.get(url, headers=HEADERS, timeout=timeout)
-            if r.status_code == 404:
-                return None
-            r.raise_for_status()
-            return r
-        except requests.RequestException as e:
-            if attempt == 1:
-                print(f"  ! GET failed for {url}: {e}", file=sys.stderr)
-                return None
-            time.sleep(2)
+def http_get(url: str, *, timeout: int = 60) -> Optional[requests.Response]:
+    """Fetch URL. Tries direct first, falls back to allorigins.win proxy
+    when the target blocks our IP (common with .gov sites against cloud IPs)."""
+    from urllib.parse import quote
+
+    candidates = [
+        url,
+        f"https://api.allorigins.win/raw?url={quote(url, safe='')}",
+        f"https://corsproxy.io/?{quote(url, safe='')}",
+    ]
+
+    last_err = None
+    for variant in candidates:
+        for attempt in range(2):
+            try:
+                r = requests.get(variant, headers=HEADERS, timeout=timeout)
+                if r.status_code == 404:
+                    return None
+                if r.status_code == 403:
+                    last_err = f"403 on {variant}"
+                    break  # try next proxy
+                r.raise_for_status()
+                # allorigins sometimes returns 200 with an HTML error page;
+                # treat empty/very-small text responses as failure for non-CSV URLs
+                if len(r.content) < 50 and "csv" not in url.lower():
+                    last_err = f"empty body via {variant}"
+                    break
+                return r
+            except requests.RequestException as e:
+                last_err = str(e)
+                if attempt == 1:
+                    break
+                time.sleep(2)
+
+    print(f"  ! GET failed for {url}: {last_err}", file=sys.stderr)
     return None
 
 
