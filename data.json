@@ -1,21 +1,48 @@
 {
-  "generated_at": "2026-06-19T13:58:03.444855+00:00",
+  "generated_at": "2026-06-20T11:02:17.039131+00:00",
   "source": "https://www.war.gov/UFO/",
-  "has_new_today": false,
-  "new_count": 0,
-  "new_ids": [],
-  "previous_run_at": "2026-06-17T14:29:35.828782+00:00",
+  "has_new_today": true,
+  "new_count": 1,
+  "new_ids": [
+    "r001_i0000_2383204913"
+  ],
+  "previous_run_at": "2026-06-19T13:58:03.445011+00:00",
   "categories": [
     "Balloon",
     "Drone",
     "UAP",
     "UFO",
-    "UMA"
+    "UMA",
+    "Uncategorised"
   ],
   "slideshow": [],
-  "entries": [],
+  "entries": [
+    {
+      "id": "r001_i0000_2383204913",
+      "title_en": "Unidentified record",
+      "description_en": "",
+      "agency": "",
+      "release": "Release 01",
+      "release_n": 1,
+      "incident_date": "",
+      "incident_location": "",
+      "type": "",
+      "file_url": "",
+      "video_url": "",
+      "image_urls": [],
+      "source_csv": "https://www.war.gov/Portals/1/Interactive/2026/UFO/uap-release001.csv",
+      "tags": [
+        "Uncategorised"
+      ],
+      "title_zh": "不明記錄",
+      "description_zh": "",
+      "agency_zh": "",
+      "incident_location_zh": "",
+      "type_zh": ""
+    }
+  ],
   "totals": {
-    "entries": 0,
-    "translations_cached": 201
+    "entries": 1,
+    "translations_cached": 202
   }
 }
